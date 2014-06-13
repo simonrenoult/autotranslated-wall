@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "setup": "npm install && cd ./public && bower install",
-    "dev": "nodemon app.js -e js,ejs,less"
+    "dev": "nodemon bin/www -e js,ejs,less"
   },
   "dependencies": {
     "body-parser": "~1.0.0",
