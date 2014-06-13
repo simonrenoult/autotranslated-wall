@@ -32,7 +32,10 @@
     "social",
     "wall"
   ],
-  "author": "Simon RENOULT",
+  "author": [
+	"Simon RENOULT <simon.renoult@gmail.com>",
+	"Adrien SAUNIER <saunier.adrien@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/simonrenoult/autotranslated-wall/issues"
