@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var User = module.exports = mongoose.model ( 'User', {
-	id: mongoose.Schema.ObjectId,
+	id: Number,
 	email: String,
 	password: String,
 	preferred_language: String
