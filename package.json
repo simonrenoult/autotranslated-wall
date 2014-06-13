@@ -1,0 +1,39 @@
+{
+  "name": "autotranslated-wall",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "debug": "~0.7.4",
+    "ejs": "~0.8.5",
+    "express": "~4.2.0",
+    "less-middleware": "1.0.x",
+    "method-override": "^2.0.2",
+    "mongoose": "^3.8.12",
+    "morgan": "~1.0.0",
+    "static-favicon": "~1.0.0"
+  },
+  "description": "Read a wall of message in you own language",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:simonrenoult/autotranslated-wall.git"
+  },
+  "keywords": [
+    "node",
+    "language",
+    "social",
+    "wall"
+  ],
+  "author": "Simon RENOULT",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simonrenoult/autotranslated-wall/issues"
+  },
+  "homepage": "https://github.com/simonrenoult/autotranslated-wall"
+}
