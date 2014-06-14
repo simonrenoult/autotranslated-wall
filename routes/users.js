@@ -1,49 +1,38 @@
 var express = require('express');
 var router = express.Router();
 var crypto = require('crypto');
-var User = require('../models/user');
 
-// USERS Routes
-// ============================================
+// Routes
+// =====================================
 
-router
+module.exports = function (models) {
 
-	// Display the user list in HMTL
-	.get('/', function (req, res) {
-		User.find({}, function (err,  users) {
-			res.render('users', { users : users });
-		});
-	})
+	router
 
-	// Create a new user
-	.post('/', function (req, res) {
-
-		if (! req.body['email']) {
-			res.end('Email not found.');
-		}
-
-		if (req.body['password'] !== req.body['confirmed_password']) {
-			res.end('Password does not match.');
-		}
-
-		var user = new User ({ 
-			email: req.body['email'], 
-			password: crypto.createHash('md5').update(req.body['password']+req.body['email']).digest('hex')
+		// Display the user list in HMTL
+		.get('/', function (req, res) {
+			res.end(JSON.stringify(models.User.findAll()));
 		})
 
-		user.save();
+		// Create a new user
+		.post('/', function (req, res) {
 
-		res.redirect(201, '/users/' + user._id);
+			if (! req.body['email']) {
+				res.end('Email not found.');
+			}
 
-	})
+			if (req.body['password'] !== req.body['confirmed_password']) {
+				res.end('Password does not match.');
+			}
 
-	// Display a single user as HTML
-	.get('/:id', function (req, res) {
-		User.findById(req.params.id, function (err, user) {
-			if (err) console.log(err);
+			res.end('TODO');
+		})
 
-			res.render('user', { user: user });
+		// Display a single user as HTML
+		.get('/:id', function (req, res) {
+			res.end('TODO');
 		});
-	});
 
-module.exports = router;
+	return router;
+
+};

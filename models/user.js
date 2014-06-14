@@ -1,8 +1,19 @@
-var mongoose = require('mongoose');
+var Sequelize = require('sequelize');
 
-var User = module.exports = mongoose.model ( 'User', {
-	id: Number,
-	email: String,
-	password: String,
-	preferred_language: String
-} );
+module.exports = function (sequelizeInstance) {
+	return sequelizeInstance.define('User', {
+		id: {
+			type: Sequelize.INTEGER,
+			primaryKey: true
+		},
+		email: {
+			type: Sequelize.STRING,
+			validate: {
+				isEmail: true
+			}
+		},
+		password: Sequelize.STRING,
+		firstname: Sequelize.STRING,
+		lastname: Sequelize.STRING,
+	});
+};
