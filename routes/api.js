@@ -77,6 +77,7 @@ router
 	})
 
 	.post('/messages', function(req, res) {
+		console.log(req.body);
 		models.Message.create(req.body).success(function(message) {
 			res.status(201).end(JSON.stringify(message));
 		});
