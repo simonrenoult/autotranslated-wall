@@ -7,6 +7,13 @@
   <body class="container-fluid">
 
 	User : <%= user.email %>
+	<form>
+		<select>
+			<% languages.forEach(function(language) { %>
+			<option value="<%=language.name%>"><%=language.name%></option>
+			<% }); %>
+		</select>
+	</form>
 
 	<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

@@ -1,19 +1,20 @@
-var Sequelize = require('sequelize');
-
-module.exports = function (sequelizeInstance) {
-	return sequelizeInstance.define('User', {
-		id: {
-			type: Sequelize.INTEGER,
+module.exports = function (sequelize, DataTypes) {
+	var User = sequelize.define('User', {
+	    id: {
+			type: DataTypes.INTEGER,
+			autoIncrement: true,
 			primaryKey: true
 		},
 		email: {
-			type: Sequelize.STRING,
+			type: DataTypes.STRING,
 			validate: {
 				isEmail: true
 			}
 		},
-		password: Sequelize.STRING,
-		firstname: Sequelize.STRING,
-		lastname: Sequelize.STRING,
+		password: DataTypes.STRING,
+		firstname: DataTypes.STRING,
+		lastname: DataTypes.STRING
 	});
+
+	return User;
 };

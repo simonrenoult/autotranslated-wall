@@ -1,13 +1,12 @@
 module.exports = function (sequelize, DataTypes) {
-	var Language = sequelize.define('Language', {
-	    name: DataTypes.STRING,
-	    short_name: DataTypes.STRING,
+	var Message = sequelize.define('Message', {
 		id: {
 			type: DataTypes.INTEGER,
 			autoIncrement: true,
 			primaryKey: true
 		},
+		content: DataTypes.STRING
 	});
 
-	return Language;
+	return Message;
 };

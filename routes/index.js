@@ -5,7 +5,7 @@ router
 
 	// Render the home page
 	.get('/', function (req, res) {
-	  res.render('index', { title: 'Wal' });
+	  res.render('index', {title: 'Wall'});
 	})
 
 	// Render the about page

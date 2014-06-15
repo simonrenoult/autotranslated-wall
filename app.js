@@ -5,37 +5,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override')
+var debug = require('debug')('autotranslated-wall');
 
+var db = require('./models');
 var app = express();
-
-// Database
-// ====================================
-
-var Sequelize = require("sequelize");
-var sequelize = new Sequelize('wall','wall','wall', {
-    'dialect': 'sqlite',
-    'path': 'db.sqlite'
-});
-
-// Models
-// =====================================
-
-var models =  {
-    User: require('./models/user')(sequelize),
-    Language: require('./models/language')(sequelize)
-};
-
-models.Language.hasMany(models.User, {as: 'Favorite language'});
-
-models.User.sync();
-models.Language.sync();
 
 // Routes
 // =====================================
 
 var general = require('./routes/index');
-var users = require('./routes/users')(models);
-var api = require('./routes/api')(models);
+var users = require('./routes/users');
+var api = require('./routes/api');
 
 // Configuration 
 // =====================================
@@ -89,5 +69,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-
-module.exports = app;
+module.exports = {
+    db: db,
+    app: app
+};
