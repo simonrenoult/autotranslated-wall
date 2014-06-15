@@ -18,19 +18,22 @@ router
 	// Create a new user
 	.post('/', function (req, res) {
 
-		if (! req.body['email']) {
-			res.end('Email not found.');
+		if (! req.body['alias']) {
+			res.end('Alias not found.');
 		}
 
-		if (req.body['password'] !== req.body['confirmed_password']) {
-			res.end('Password does not match.');
+		if ( ! req.body['LanguageId'] ) {
+			res.end('Language must be provided.');
 		}
-
-		req.body['password'] = crypto.createHash('md5').update(req.body['password']).digest('hex');
 
 		models.User.create(req.body).success(function(user) {
 			user.save().success(function (){
-				res.redirect(201, '/users/' + user.id);
+
+				res.cookie('alias', user.alias, {maxAge: 1000*60*60*24*365});
+				res.cookie('alias_id', user.id, {maxAge: 1000*60*60*24*365});
+				res.cookie('language_id', user.LanguageId, {maxAge: 1000*60*60*24*365});
+
+				res.status(201).redirect('/wall');
 			});
 		});
 	})

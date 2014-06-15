@@ -5,16 +5,16 @@ module.exports = function (sequelize, DataTypes) {
 			autoIncrement: true,
 			primaryKey: true
 		},
-		email: {
-			type: DataTypes.STRING,
-			validate: {
-				isEmail: true
+		alias: DataTypes.STRING
+	},
+	{
+		classMethods: {
+			associate: function(models) {
+				User.hasOne(models.Message, {as : "message_owner"})
 			}
-		},
-		password: DataTypes.STRING,
-		firstname: DataTypes.STRING,
-		lastname: DataTypes.STRING
-	});
+		}
+	}
+	);
 
 	return User;
 };

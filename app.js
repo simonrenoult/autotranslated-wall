@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override')
 var debug = require('debug')('autotranslated-wall');
 
+
 var db = require('./models');
 var app = express();
 
@@ -16,6 +17,17 @@ var app = express();
 var general = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
+var wall = require('./routes/wall');
+
+
+
+/*
+  console.log(keys.access_token);
+  client.translate(params, function(err, data) {
+      console.log(data);
+  });
+});*/
+
 
 // Configuration 
 // =====================================
@@ -37,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', general);
 app.use('/users', users);
 app.use('/api', api);
+app.use('/wall', wall);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

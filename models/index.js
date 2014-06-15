@@ -5,7 +5,7 @@ var fs        = require('fs')
   , db        = {}
   , sequelize = new Sequelize('wall', 'wall', 'wall', {
     dialect: 'sqlite',
-    path: 'db.sqlite'
+    storage: './db'
   })
  
 fs

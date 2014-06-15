@@ -7,6 +7,14 @@ module.exports = function (sequelize, DataTypes) {
 			autoIncrement: true,
 			primaryKey: true
 		},
+	},
+	{
+		classMethods: {
+			associate: function(models) {
+				Language.hasOne(models.User, {as : "preferred_language"});
+				Language.hasOne(models.Message, {as: "message_langgague"});
+			}
+		}
 	});
 
 	return Language;
