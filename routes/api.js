@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var crypto = require('crypto');
-var models = require('../models')
+var models = require('../models');
+var http = require('http');
+var sequelize = require('Sequelize');
 
 // Routes
 // =====================================
@@ -53,6 +55,7 @@ router
 
 	// Add a new language
 	.post('/languages', function(req, res) {
+
 		models.Language.create(req.body).success(function(language){
 			res.status(201).end(JSON.stringify(language));
 		})
@@ -70,10 +73,76 @@ router
 	// MESSAGES
 	// ===========================================
 
-	.get('/messages', function(req, res) {
-		models.Message.findAll().success(function(messages) {
-			res.end(JSON.stringify(messages));
+	.get('/translations/:id', function(req, res) {
+
+		models.Message.find(req.params.id).success(function(message) {
+
+			models.Language.find(req.cookies.language_id).success(function(language){
+
+				var post = http.request({
+					host: 'localhost',
+					port: '3001',
+					path: '/',
+					method: 'POST',
+					headers: {
+						'Content-Type' : 'application/json'
+					}
+				},
+				function(postRes) {
+					
+					var data = "";
+
+					postRes.on('data', function(chunk) {
+						data += chunk;
+					});
+
+					postRes.on('end', function() {
+						res.end(data);
+					})
+
+					postRes.on('error', function(data) {
+						console.error(data);
+					});
+				});
+
+				post.write(JSON.stringify({
+					content: message.content,
+					language_to: language.short_name
+				}));
+				post.end();
+
+			});
+
 		});
+		
+	})
+
+	.get('/messages', function(req, res) {
+
+		models.Message.findAll().success(function(messages) {
+
+			models.User.findAll().success(function(users) {
+
+				var userList = [];
+				users.forEach(function(user) {
+					userList["user#" + user.id] = user.alias;
+				});
+
+				var temp = JSON.stringify(messages);
+				temp = JSON.parse(temp);
+				
+				temp.forEach(function(message) {
+					message.alias = userList['user#'+message.UserId]
+				});
+
+				console.log(temp);
+
+				res.end(JSON.stringify(temp));
+
+			});
+
+		});
+		
 	})
 
 	.post('/messages', function(req, res) {

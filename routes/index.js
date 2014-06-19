@@ -1,11 +1,16 @@
 var express = require('express');
 var router = express.Router();
+var models = require('../models');
 
 router
 
 	// Render the home page
 	.get('/', function (req, res) {
-	  res.render('index', {title: 'Wall'});
+
+		models.Language.findAll().success(function(languages) {
+			res.render('index', {title: 'Wall', languages: languages});
+		});
+	  
 	})
 
 	// Render the about page

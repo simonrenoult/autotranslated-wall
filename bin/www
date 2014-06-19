@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 var debug = require('debug')('autotranslated-wall');
 var wall = require('../app');
+var client;
 
 wall.db
     .sequelize

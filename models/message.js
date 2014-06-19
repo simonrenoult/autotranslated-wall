@@ -4,9 +4,17 @@ module.exports = function (sequelize, DataTypes) {
 			type: DataTypes.INTEGER,
 			autoIncrement: true,
 			primaryKey: true
-		},
+		}, 	
 		content: DataTypes.STRING
-	});
+	},
+	
+	{
+		classMethods: {
+			associate: function(models) {
+			}
+		}
+	}
+	);
 
 	return Message;
 };
