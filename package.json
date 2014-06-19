@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node bin/www",
+    "start": "node bin/proxy.js && node bin/www",
     "setup": "npm install && cd ./public && bower install",
     "dev": "nodemon bin/www -e js,ejs,less"
   },
