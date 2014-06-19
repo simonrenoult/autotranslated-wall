@@ -1,7 +1,23 @@
 Autotranslated Wall
 ===
 
-# Hack
+# Run
+
+	npm install # Install the dependencies
+
+Open a 1st terminal and run :
+
+	node bin/proxy.js
+
+Open a 2nd terminal and run :
+
+	node bin/www
+
+Navigate with a webbrowser to `localhost:3000`
+
+Has been tested with a fresh install of Ubuntu with git/node/npm.
+
+# Hack (do it to work on the server)
 
 ## Dependencies
 
