@@ -18,7 +18,7 @@
     "method-override": "^2.0.2",
     "morgan": "~1.0.0",
     "mstranslator": "^0.1.6",
-    "sequelize": "^1.7.8",
+    "sequelize": "^1.7.9",
     "sqlite3": "^2.2.3",
     "static-favicon": "~1.0.0"
   },

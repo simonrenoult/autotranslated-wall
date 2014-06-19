@@ -3,7 +3,6 @@ var router = express.Router();
 var crypto = require('crypto');
 var models = require('../models');
 var http = require('http');
-var sequelize = require('Sequelize');
 
 // Routes
 // =====================================
